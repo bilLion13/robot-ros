@@ -1,0 +1,3 @@
+[console_scripts]
+battery_node = influx_node.battery_node:main
+

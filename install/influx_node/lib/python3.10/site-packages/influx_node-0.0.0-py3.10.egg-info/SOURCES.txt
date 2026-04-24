@@ -1,0 +1,16 @@
+package.xml
+setup.cfg
+setup.py
+../../build/influx_node/influx_node.egg-info/PKG-INFO
+../../build/influx_node/influx_node.egg-info/SOURCES.txt
+../../build/influx_node/influx_node.egg-info/dependency_links.txt
+../../build/influx_node/influx_node.egg-info/entry_points.txt
+../../build/influx_node/influx_node.egg-info/requires.txt
+../../build/influx_node/influx_node.egg-info/top_level.txt
+../../build/influx_node/influx_node.egg-info/zip-safe
+influx_node/__init__.py
+influx_node/battery_node.py
+resource/influx_node
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py
