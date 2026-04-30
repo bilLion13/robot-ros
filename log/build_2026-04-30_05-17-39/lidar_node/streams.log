@@ -1,0 +1,23 @@
+[2.240s] Invoking command in '/root/robot-ros/src/lidar_node': PYTHONPATH=/root/robot-ros/build/lidar_node/prefix_override:/root/robot-ros/install/lidar_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/lidar_node build --build-base /root/robot-ros/build/lidar_node/build install --record /root/robot-ros/build/lidar_node/install.log --single-version-externally-managed
+[2.631s] running egg_info
+[2.633s] writing ../../build/lidar_node/lidar_node.egg-info/PKG-INFO
+[2.633s] writing dependency_links to ../../build/lidar_node/lidar_node.egg-info/dependency_links.txt
+[2.637s] writing entry points to ../../build/lidar_node/lidar_node.egg-info/entry_points.txt
+[2.638s] writing requirements to ../../build/lidar_node/lidar_node.egg-info/requires.txt
+[2.639s] writing top-level names to ../../build/lidar_node/lidar_node.egg-info/top_level.txt
+[2.648s] reading manifest file '../../build/lidar_node/lidar_node.egg-info/SOURCES.txt'
+[2.652s] writing manifest file '../../build/lidar_node/lidar_node.egg-info/SOURCES.txt'
+[2.653s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[2.657s]   warnings.warn(
+[2.659s] running build
+[2.659s] running build_py
+[2.660s] running install
+[2.660s] running install_lib
+[2.661s] running install_data
+[2.661s] running install_egg_info
+[2.663s] removing '/root/robot-ros/install/lidar_node/lib/python3.10/site-packages/lidar_node-0.0.0-py3.10.egg-info' (and everything under it)
+[2.664s] Copying ../../build/lidar_node/lidar_node.egg-info to /root/robot-ros/install/lidar_node/lib/python3.10/site-packages/lidar_node-0.0.0-py3.10.egg-info
+[2.666s] running install_scripts
+[2.733s] Installing lidar_node script to /root/robot-ros/install/lidar_node/lib/lidar_node
+[2.733s] writing list of installed files to '/root/robot-ros/build/lidar_node/install.log'
+[2.811s] Invoked command in '/root/robot-ros/src/lidar_node' returned '0': PYTHONPATH=/root/robot-ros/build/lidar_node/prefix_override:/root/robot-ros/install/lidar_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/lidar_node build --build-base /root/robot-ros/build/lidar_node/build install --record /root/robot-ros/build/lidar_node/install.log --single-version-externally-managed

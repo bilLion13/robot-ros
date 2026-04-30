@@ -1,0 +1,39 @@
+[2.391s] Invoking command in '/root/robot-ros/src/influx_node': PYTHONPATH=/root/robot-ros/build/influx_node/prefix_override:/root/robot-ros/install/influx_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/influx_node build --build-base /root/robot-ros/build/influx_node/build install --record /root/robot-ros/build/influx_node/install.log --single-version-externally-managed
+[2.717s] running egg_info
+[2.719s] creating ../../build/influx_node/influx_node.egg-info
+[2.719s] writing ../../build/influx_node/influx_node.egg-info/PKG-INFO
+[2.720s] writing dependency_links to ../../build/influx_node/influx_node.egg-info/dependency_links.txt
+[2.721s] writing entry points to ../../build/influx_node/influx_node.egg-info/entry_points.txt
+[2.721s] writing requirements to ../../build/influx_node/influx_node.egg-info/requires.txt
+[2.721s] writing top-level names to ../../build/influx_node/influx_node.egg-info/top_level.txt
+[2.721s] writing manifest file '../../build/influx_node/influx_node.egg-info/SOURCES.txt'
+[2.725s] reading manifest file '../../build/influx_node/influx_node.egg-info/SOURCES.txt'
+[2.726s] writing manifest file '../../build/influx_node/influx_node.egg-info/SOURCES.txt'
+[2.726s] running build
+[2.727s] running build_py
+[2.727s] creating /root/robot-ros/build/influx_node/build
+[2.727s] creating /root/robot-ros/build/influx_node/build/lib
+[2.727s] creating /root/robot-ros/build/influx_node/build/lib/influx_node
+[2.727s] copying influx_node/battery_node.py -> /root/robot-ros/build/influx_node/build/lib/influx_node
+[2.728s] copying influx_node/__init__.py -> /root/robot-ros/build/influx_node/build/lib/influx_node
+[2.728s] running install
+[2.728s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[2.728s]   warnings.warn(
+[2.729s] running install_lib
+[2.730s] creating /root/robot-ros/install/influx_node/lib/python3.10/site-packages/influx_node
+[2.730s] copying /root/robot-ros/build/influx_node/build/lib/influx_node/battery_node.py -> /root/robot-ros/install/influx_node/lib/python3.10/site-packages/influx_node
+[2.731s] copying /root/robot-ros/build/influx_node/build/lib/influx_node/__init__.py -> /root/robot-ros/install/influx_node/lib/python3.10/site-packages/influx_node
+[2.732s] byte-compiling /root/robot-ros/install/influx_node/lib/python3.10/site-packages/influx_node/battery_node.py to battery_node.cpython-310.pyc
+[2.733s] byte-compiling /root/robot-ros/install/influx_node/lib/python3.10/site-packages/influx_node/__init__.py to __init__.cpython-310.pyc
+[2.733s] running install_data
+[2.734s] creating /root/robot-ros/install/influx_node/share/ament_index
+[2.734s] creating /root/robot-ros/install/influx_node/share/ament_index/resource_index
+[2.734s] creating /root/robot-ros/install/influx_node/share/ament_index/resource_index/packages
+[2.734s] copying resource/influx_node -> /root/robot-ros/install/influx_node/share/ament_index/resource_index/packages
+[2.735s] copying package.xml -> /root/robot-ros/install/influx_node/share/influx_node
+[2.735s] running install_egg_info
+[2.738s] Copying ../../build/influx_node/influx_node.egg-info to /root/robot-ros/install/influx_node/lib/python3.10/site-packages/influx_node-0.0.0-py3.10.egg-info
+[2.739s] running install_scripts
+[2.787s] Installing battery_node script to /root/robot-ros/install/influx_node/lib/influx_node
+[2.787s] writing list of installed files to '/root/robot-ros/build/influx_node/install.log'
+[2.961s] Invoked command in '/root/robot-ros/src/influx_node' returned '0': PYTHONPATH=/root/robot-ros/build/influx_node/prefix_override:/root/robot-ros/install/influx_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/influx_node build --build-base /root/robot-ros/build/influx_node/build install --record /root/robot-ros/build/influx_node/install.log --single-version-externally-managed

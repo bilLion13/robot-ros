@@ -1,0 +1,39 @@
+[2.357s] Invoking command in '/root/robot-ros/src/lidar_node': PYTHONPATH=/root/robot-ros/src/build/lidar_node/prefix_override:/root/robot-ros/src/install/lidar_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/lidar_node build --build-base /root/robot-ros/src/build/lidar_node/build install --record /root/robot-ros/src/build/lidar_node/install.log --single-version-externally-managed
+[2.991s] running egg_info
+[2.992s] creating ../build/lidar_node/lidar_node.egg-info
+[2.992s] writing ../build/lidar_node/lidar_node.egg-info/PKG-INFO
+[2.992s] writing dependency_links to ../build/lidar_node/lidar_node.egg-info/dependency_links.txt
+[2.992s] writing entry points to ../build/lidar_node/lidar_node.egg-info/entry_points.txt
+[2.992s] writing requirements to ../build/lidar_node/lidar_node.egg-info/requires.txt
+[2.995s] writing top-level names to ../build/lidar_node/lidar_node.egg-info/top_level.txt
+[2.996s] writing manifest file '../build/lidar_node/lidar_node.egg-info/SOURCES.txt'
+[2.997s] reading manifest file '../build/lidar_node/lidar_node.egg-info/SOURCES.txt'
+[2.997s] writing manifest file '../build/lidar_node/lidar_node.egg-info/SOURCES.txt'
+[3.004s] running build
+[3.004s] running build_py
+[3.004s] creating /root/robot-ros/src/build/lidar_node/build
+[3.004s] creating /root/robot-ros/src/build/lidar_node/build/lib
+[3.004s] creating /root/robot-ros/src/build/lidar_node/build/lib/lidar_node
+[3.004s] copying lidar_node/lidar_node.py -> /root/robot-ros/src/build/lidar_node/build/lib/lidar_node
+[3.008s] copying lidar_node/__init__.py -> /root/robot-ros/src/build/lidar_node/build/lib/lidar_node
+[3.008s] running install
+[3.008s] running install_lib
+[3.008s] creating /root/robot-ros/src/install/lidar_node/lib/python3.10/site-packages/lidar_node
+[3.008s] copying /root/robot-ros/src/build/lidar_node/build/lib/lidar_node/lidar_node.py -> /root/robot-ros/src/install/lidar_node/lib/python3.10/site-packages/lidar_node
+[3.008s] copying /root/robot-ros/src/build/lidar_node/build/lib/lidar_node/__init__.py -> /root/robot-ros/src/install/lidar_node/lib/python3.10/site-packages/lidar_node
+[3.008s] byte-compiling /root/robot-ros/src/install/lidar_node/lib/python3.10/site-packages/lidar_node/lidar_node.py to lidar_node.cpython-310.pyc
+[3.008s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[3.008s]   warnings.warn(
+[3.009s] byte-compiling /root/robot-ros/src/install/lidar_node/lib/python3.10/site-packages/lidar_node/__init__.py to __init__.cpython-310.pyc
+[3.009s] running install_data
+[3.009s] creating /root/robot-ros/src/install/lidar_node/share/ament_index
+[3.009s] creating /root/robot-ros/src/install/lidar_node/share/ament_index/resource_index
+[3.009s] creating /root/robot-ros/src/install/lidar_node/share/ament_index/resource_index/packages
+[3.009s] copying resource/lidar_node -> /root/robot-ros/src/install/lidar_node/share/ament_index/resource_index/packages
+[3.009s] copying package.xml -> /root/robot-ros/src/install/lidar_node/share/lidar_node
+[3.009s] running install_egg_info
+[3.011s] Copying ../build/lidar_node/lidar_node.egg-info to /root/robot-ros/src/install/lidar_node/lib/python3.10/site-packages/lidar_node-0.0.0-py3.10.egg-info
+[3.014s] running install_scripts
+[3.079s] Installing lidar_node script to /root/robot-ros/src/install/lidar_node/lib/lidar_node
+[3.080s] writing list of installed files to '/root/robot-ros/src/build/lidar_node/install.log'
+[3.223s] Invoked command in '/root/robot-ros/src/lidar_node' returned '0': PYTHONPATH=/root/robot-ros/src/build/lidar_node/prefix_override:/root/robot-ros/src/install/lidar_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/lidar_node build --build-base /root/robot-ros/src/build/lidar_node/build install --record /root/robot-ros/src/build/lidar_node/install.log --single-version-externally-managed

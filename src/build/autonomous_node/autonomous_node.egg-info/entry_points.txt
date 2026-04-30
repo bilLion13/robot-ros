@@ -1,0 +1,3 @@
+[console_scripts]
+autonomous_node = autonomous_node.autonomous_node:main
+

@@ -1,0 +1,37 @@
+running egg_info
+creating ../build/influx_node/influx_node.egg-info
+writing ../build/influx_node/influx_node.egg-info/PKG-INFO
+writing dependency_links to ../build/influx_node/influx_node.egg-info/dependency_links.txt
+writing entry points to ../build/influx_node/influx_node.egg-info/entry_points.txt
+writing requirements to ../build/influx_node/influx_node.egg-info/requires.txt
+writing top-level names to ../build/influx_node/influx_node.egg-info/top_level.txt
+writing manifest file '../build/influx_node/influx_node.egg-info/SOURCES.txt'
+reading manifest file '../build/influx_node/influx_node.egg-info/SOURCES.txt'
+writing manifest file '../build/influx_node/influx_node.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /root/robot-ros/src/build/influx_node/build
+creating /root/robot-ros/src/build/influx_node/build/lib
+creating /root/robot-ros/src/build/influx_node/build/lib/influx_node
+copying influx_node/battery_node.py -> /root/robot-ros/src/build/influx_node/build/lib/influx_node
+copying influx_node/__init__.py -> /root/robot-ros/src/build/influx_node/build/lib/influx_node
+running install
+/usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+running install_lib
+creating /root/robot-ros/src/install/influx_node/lib/python3.10/site-packages/influx_node
+copying /root/robot-ros/src/build/influx_node/build/lib/influx_node/battery_node.py -> /root/robot-ros/src/install/influx_node/lib/python3.10/site-packages/influx_node
+copying /root/robot-ros/src/build/influx_node/build/lib/influx_node/__init__.py -> /root/robot-ros/src/install/influx_node/lib/python3.10/site-packages/influx_node
+byte-compiling /root/robot-ros/src/install/influx_node/lib/python3.10/site-packages/influx_node/battery_node.py to battery_node.cpython-310.pyc
+byte-compiling /root/robot-ros/src/install/influx_node/lib/python3.10/site-packages/influx_node/__init__.py to __init__.cpython-310.pyc
+running install_data
+creating /root/robot-ros/src/install/influx_node/share/ament_index
+creating /root/robot-ros/src/install/influx_node/share/ament_index/resource_index
+creating /root/robot-ros/src/install/influx_node/share/ament_index/resource_index/packages
+copying resource/influx_node -> /root/robot-ros/src/install/influx_node/share/ament_index/resource_index/packages
+copying package.xml -> /root/robot-ros/src/install/influx_node/share/influx_node
+running install_egg_info
+Copying ../build/influx_node/influx_node.egg-info to /root/robot-ros/src/install/influx_node/lib/python3.10/site-packages/influx_node-0.0.0-py3.10.egg-info
+running install_scripts
+Installing battery_node script to /root/robot-ros/src/install/influx_node/lib/influx_node
+writing list of installed files to '/root/robot-ros/src/build/influx_node/install.log'

@@ -1,0 +1,212 @@
+[1.360s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build']
+[1.360s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=4, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=None, packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, mixin_files=None, mixin=None, verb_parser=<colcon_mixin.mixin.mixin_argument.MixinArgumentDecorator object at 0x7fff5f969540>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0x7fff5f969ff0>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0x7fff5f969ff0>>, mixin_verb=('build',))
+[1.413s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[1.414s] INFO:colcon.colcon_metadata.package_discovery.colcon_meta:Using configuration from '/root/.colcon/metadata/default/Gazebo.meta'
+[1.414s] INFO:colcon.colcon_metadata.package_discovery.colcon_meta:Using configuration from '/root/.colcon/metadata/default/fastrtps.meta'
+[1.415s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[1.415s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[1.415s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[1.415s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[1.415s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[1.415s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/root/robot-ros/src'
+[1.415s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[1.415s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[1.415s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[1.415s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[1.415s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[1.415s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[1.415s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[1.415s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[1.415s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[1.448s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['cmake', 'python']
+[1.448s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'cmake'
+[1.448s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python'
+[1.448s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['python_setup_py']
+[1.448s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'python_setup_py'
+[1.449s] Level 1:colcon.colcon_core.package_identification:_identify(autonomous_node) by extensions ['ignore', 'ignore_ament_install']
+[1.449s] Level 1:colcon.colcon_core.package_identification:_identify(autonomous_node) by extension 'ignore'
+[1.449s] Level 1:colcon.colcon_core.package_identification:_identify(autonomous_node) by extension 'ignore_ament_install'
+[1.449s] Level 1:colcon.colcon_core.package_identification:_identify(autonomous_node) by extensions ['colcon_pkg']
+[1.449s] Level 1:colcon.colcon_core.package_identification:_identify(autonomous_node) by extension 'colcon_pkg'
+[1.449s] Level 1:colcon.colcon_core.package_identification:_identify(autonomous_node) by extensions ['colcon_meta']
+[1.449s] Level 1:colcon.colcon_core.package_identification:_identify(autonomous_node) by extension 'colcon_meta'
+[1.449s] Level 1:colcon.colcon_core.package_identification:_identify(autonomous_node) by extensions ['ros']
+[1.449s] Level 1:colcon.colcon_core.package_identification:_identify(autonomous_node) by extension 'ros'
+[1.452s] DEBUG:colcon.colcon_core.package_identification:Package 'autonomous_node' with type 'ros.ament_python' and name 'autonomous_node'
+[1.452s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extensions ['ignore', 'ignore_ament_install']
+[1.452s] Level 1:colcon.colcon_core.package_identification:_identify(build) by extension 'ignore'
+[1.453s] Level 1:colcon.colcon_core.package_identification:_identify(build) ignored
+[1.453s] Level 1:colcon.colcon_core.package_identification:_identify(influx_node) by extensions ['ignore', 'ignore_ament_install']
+[1.453s] Level 1:colcon.colcon_core.package_identification:_identify(influx_node) by extension 'ignore'
+[1.453s] Level 1:colcon.colcon_core.package_identification:_identify(influx_node) by extension 'ignore_ament_install'
+[1.453s] Level 1:colcon.colcon_core.package_identification:_identify(influx_node) by extensions ['colcon_pkg']
+[1.453s] Level 1:colcon.colcon_core.package_identification:_identify(influx_node) by extension 'colcon_pkg'
+[1.453s] Level 1:colcon.colcon_core.package_identification:_identify(influx_node) by extensions ['colcon_meta']
+[1.453s] Level 1:colcon.colcon_core.package_identification:_identify(influx_node) by extension 'colcon_meta'
+[1.453s] Level 1:colcon.colcon_core.package_identification:_identify(influx_node) by extensions ['ros']
+[1.453s] Level 1:colcon.colcon_core.package_identification:_identify(influx_node) by extension 'ros'
+[1.454s] DEBUG:colcon.colcon_core.package_identification:Package 'influx_node' with type 'ros.ament_python' and name 'influx_node'
+[1.454s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extensions ['ignore', 'ignore_ament_install']
+[1.454s] Level 1:colcon.colcon_core.package_identification:_identify(install) by extension 'ignore'
+[1.454s] Level 1:colcon.colcon_core.package_identification:_identify(install) ignored
+[1.454s] Level 1:colcon.colcon_core.package_identification:_identify(lidar_node) by extensions ['ignore', 'ignore_ament_install']
+[1.454s] Level 1:colcon.colcon_core.package_identification:_identify(lidar_node) by extension 'ignore'
+[1.454s] Level 1:colcon.colcon_core.package_identification:_identify(lidar_node) by extension 'ignore_ament_install'
+[1.454s] Level 1:colcon.colcon_core.package_identification:_identify(lidar_node) by extensions ['colcon_pkg']
+[1.454s] Level 1:colcon.colcon_core.package_identification:_identify(lidar_node) by extension 'colcon_pkg'
+[1.454s] Level 1:colcon.colcon_core.package_identification:_identify(lidar_node) by extensions ['colcon_meta']
+[1.454s] Level 1:colcon.colcon_core.package_identification:_identify(lidar_node) by extension 'colcon_meta'
+[1.454s] Level 1:colcon.colcon_core.package_identification:_identify(lidar_node) by extensions ['ros']
+[1.454s] Level 1:colcon.colcon_core.package_identification:_identify(lidar_node) by extension 'ros'
+[1.455s] DEBUG:colcon.colcon_core.package_identification:Package 'lidar_node' with type 'ros.ament_python' and name 'lidar_node'
+[1.455s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extensions ['ignore', 'ignore_ament_install']
+[1.455s] Level 1:colcon.colcon_core.package_identification:_identify(log) by extension 'ignore'
+[1.455s] Level 1:colcon.colcon_core.package_identification:_identify(log) ignored
+[1.455s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[1.455s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[1.455s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[1.455s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[1.455s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[1.543s] Level 5:colcon.colcon_core.verb:set package 'autonomous_node' build argument 'cmake_args' from command line to 'None'
+[1.543s] Level 5:colcon.colcon_core.verb:set package 'autonomous_node' build argument 'cmake_target' from command line to 'None'
+[1.543s] Level 5:colcon.colcon_core.verb:set package 'autonomous_node' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.543s] Level 5:colcon.colcon_core.verb:set package 'autonomous_node' build argument 'cmake_clean_cache' from command line to 'False'
+[1.543s] Level 5:colcon.colcon_core.verb:set package 'autonomous_node' build argument 'cmake_clean_first' from command line to 'False'
+[1.544s] Level 5:colcon.colcon_core.verb:set package 'autonomous_node' build argument 'cmake_force_configure' from command line to 'False'
+[1.544s] Level 5:colcon.colcon_core.verb:set package 'autonomous_node' build argument 'ament_cmake_args' from command line to 'None'
+[1.544s] Level 5:colcon.colcon_core.verb:set package 'autonomous_node' build argument 'catkin_cmake_args' from command line to 'None'
+[1.544s] Level 5:colcon.colcon_core.verb:set package 'autonomous_node' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.544s] DEBUG:colcon.colcon_core.verb:Building package 'autonomous_node' with the following arguments: {'ament_cmake_args': None, 'build_base': '/root/robot-ros/src/build/autonomous_node', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/root/robot-ros/src/install/autonomous_node', 'merge_install': False, 'path': '/root/robot-ros/src/autonomous_node', 'symlink_install': False, 'test_result_base': None}
+[1.559s] Level 5:colcon.colcon_core.verb:set package 'influx_node' build argument 'cmake_args' from command line to 'None'
+[1.559s] Level 5:colcon.colcon_core.verb:set package 'influx_node' build argument 'cmake_target' from command line to 'None'
+[1.559s] Level 5:colcon.colcon_core.verb:set package 'influx_node' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.559s] Level 5:colcon.colcon_core.verb:set package 'influx_node' build argument 'cmake_clean_cache' from command line to 'False'
+[1.559s] Level 5:colcon.colcon_core.verb:set package 'influx_node' build argument 'cmake_clean_first' from command line to 'False'
+[1.559s] Level 5:colcon.colcon_core.verb:set package 'influx_node' build argument 'cmake_force_configure' from command line to 'False'
+[1.559s] Level 5:colcon.colcon_core.verb:set package 'influx_node' build argument 'ament_cmake_args' from command line to 'None'
+[1.559s] Level 5:colcon.colcon_core.verb:set package 'influx_node' build argument 'catkin_cmake_args' from command line to 'None'
+[1.559s] Level 5:colcon.colcon_core.verb:set package 'influx_node' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.559s] DEBUG:colcon.colcon_core.verb:Building package 'influx_node' with the following arguments: {'ament_cmake_args': None, 'build_base': '/root/robot-ros/src/build/influx_node', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/root/robot-ros/src/install/influx_node', 'merge_install': False, 'path': '/root/robot-ros/src/influx_node', 'symlink_install': False, 'test_result_base': None}
+[1.575s] Level 5:colcon.colcon_core.verb:set package 'lidar_node' build argument 'cmake_args' from command line to 'None'
+[1.575s] Level 5:colcon.colcon_core.verb:set package 'lidar_node' build argument 'cmake_target' from command line to 'None'
+[1.575s] Level 5:colcon.colcon_core.verb:set package 'lidar_node' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[1.575s] Level 5:colcon.colcon_core.verb:set package 'lidar_node' build argument 'cmake_clean_cache' from command line to 'False'
+[1.575s] Level 5:colcon.colcon_core.verb:set package 'lidar_node' build argument 'cmake_clean_first' from command line to 'False'
+[1.575s] Level 5:colcon.colcon_core.verb:set package 'lidar_node' build argument 'cmake_force_configure' from command line to 'False'
+[1.575s] Level 5:colcon.colcon_core.verb:set package 'lidar_node' build argument 'ament_cmake_args' from command line to 'None'
+[1.575s] Level 5:colcon.colcon_core.verb:set package 'lidar_node' build argument 'catkin_cmake_args' from command line to 'None'
+[1.575s] Level 5:colcon.colcon_core.verb:set package 'lidar_node' build argument 'catkin_skip_building_tests' from command line to 'False'
+[1.575s] DEBUG:colcon.colcon_core.verb:Building package 'lidar_node' with the following arguments: {'ament_cmake_args': None, 'build_base': '/root/robot-ros/src/build/lidar_node', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/root/robot-ros/src/install/lidar_node', 'merge_install': False, 'path': '/root/robot-ros/src/lidar_node', 'symlink_install': False, 'test_result_base': None}
+[1.591s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[1.608s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[1.608s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/root/robot-ros/src/autonomous_node' with build type 'ament_python'
+[1.609s] Level 1:colcon.colcon_core.shell:create_environment_hook('autonomous_node', 'ament_prefix_path')
+[1.631s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[1.632s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/robot-ros/src/install/autonomous_node/share/autonomous_node/hook/ament_prefix_path.ps1'
+[1.633s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/robot-ros/src/install/autonomous_node/share/autonomous_node/hook/ament_prefix_path.dsv'
+[1.634s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/robot-ros/src/install/autonomous_node/share/autonomous_node/hook/ament_prefix_path.sh'
+[1.652s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.652s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.755s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/root/robot-ros/src/influx_node' with build type 'ament_python'
+[1.756s] Level 1:colcon.colcon_core.shell:create_environment_hook('influx_node', 'ament_prefix_path')
+[1.773s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/robot-ros/src/install/influx_node/share/influx_node/hook/ament_prefix_path.ps1'
+[1.774s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/robot-ros/src/install/influx_node/share/influx_node/hook/ament_prefix_path.dsv'
+[1.775s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/robot-ros/src/install/influx_node/share/influx_node/hook/ament_prefix_path.sh'
+[1.794s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.794s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[1.895s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/root/robot-ros/src/lidar_node' with build type 'ament_python'
+[1.895s] Level 1:colcon.colcon_core.shell:create_environment_hook('lidar_node', 'ament_prefix_path')
+[1.914s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/robot-ros/src/install/lidar_node/share/lidar_node/hook/ament_prefix_path.ps1'
+[1.915s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/robot-ros/src/install/lidar_node/share/lidar_node/hook/ament_prefix_path.dsv'
+[1.916s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/robot-ros/src/install/lidar_node/share/lidar_node/hook/ament_prefix_path.sh'
+[1.934s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[1.935s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.380s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/root/robot-ros/src/autonomous_node'
+[2.396s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.396s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[2.858s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/root/robot-ros/src/influx_node'
+[2.873s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[2.874s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[3.324s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/root/robot-ros/src/lidar_node'
+[3.345s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[3.345s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[4.002s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/robot-ros/src/lidar_node': PYTHONPATH=/root/robot-ros/src/build/lidar_node/prefix_override:/root/robot-ros/src/install/lidar_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/lidar_node build --build-base /root/robot-ros/src/build/lidar_node/build install --record /root/robot-ros/src/build/lidar_node/install.log --single-version-externally-managed
+[4.018s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/robot-ros/src/influx_node': PYTHONPATH=/root/robot-ros/src/build/influx_node/prefix_override:/root/robot-ros/src/install/influx_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/influx_node build --build-base /root/robot-ros/src/build/influx_node/build install --record /root/robot-ros/src/build/influx_node/install.log --single-version-externally-managed
+[4.020s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/root/robot-ros/src/autonomous_node': PYTHONPATH=/root/robot-ros/src/build/autonomous_node/prefix_override:/root/robot-ros/src/install/autonomous_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/autonomous_node build --build-base /root/robot-ros/src/build/autonomous_node/build install --record /root/robot-ros/src/build/autonomous_node/install.log --single-version-externally-managed
+[4.506s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/robot-ros/src/lidar_node' returned '0': PYTHONPATH=/root/robot-ros/src/build/lidar_node/prefix_override:/root/robot-ros/src/install/lidar_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/lidar_node build --build-base /root/robot-ros/src/build/lidar_node/build install --record /root/robot-ros/src/build/lidar_node/install.log --single-version-externally-managed
+[4.525s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/lidar_node' for CMake module files
+[4.526s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/lidar_node' for CMake config files
+[4.527s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/lidar_node/lib'
+[4.527s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/lidar_node/bin'
+[4.527s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/lidar_node/lib/pkgconfig/lidar_node.pc'
+[4.528s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/lidar_node/lib/python3.10/site-packages'
+[4.528s] Level 1:colcon.colcon_core.shell:create_environment_hook('lidar_node', 'pythonpath')
+[4.552s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/robot-ros/src/install/lidar_node/share/lidar_node/hook/pythonpath.ps1'
+[4.552s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/robot-ros/src/install/lidar_node/share/lidar_node/hook/pythonpath.dsv'
+[4.554s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/robot-ros/src/install/lidar_node/share/lidar_node/hook/pythonpath.sh'
+[4.555s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/lidar_node/bin'
+[4.555s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(lidar_node)
+[4.570s] INFO:colcon.colcon_core.shell:Creating package script '/root/robot-ros/src/install/lidar_node/share/lidar_node/package.ps1'
+[4.571s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/robot-ros/src/install/lidar_node/share/lidar_node/package.dsv'
+[4.573s] INFO:colcon.colcon_core.shell:Creating package script '/root/robot-ros/src/install/lidar_node/share/lidar_node/package.sh'
+[4.574s] INFO:colcon.colcon_core.shell:Creating package script '/root/robot-ros/src/install/lidar_node/share/lidar_node/package.bash'
+[4.575s] INFO:colcon.colcon_core.shell:Creating package script '/root/robot-ros/src/install/lidar_node/share/lidar_node/package.zsh'
+[4.576s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/robot-ros/src/install/lidar_node/share/colcon-core/packages/lidar_node)
+[4.580s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/robot-ros/src/autonomous_node' returned '0': PYTHONPATH=/root/robot-ros/src/build/autonomous_node/prefix_override:/root/robot-ros/src/install/autonomous_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/autonomous_node build --build-base /root/robot-ros/src/build/autonomous_node/build install --record /root/robot-ros/src/build/autonomous_node/install.log --single-version-externally-managed
+[4.597s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/autonomous_node' for CMake module files
+[4.598s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/autonomous_node' for CMake config files
+[4.598s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/autonomous_node/lib'
+[4.599s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/autonomous_node/bin'
+[4.599s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/autonomous_node/lib/pkgconfig/autonomous_node.pc'
+[4.599s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/autonomous_node/lib/python3.10/site-packages'
+[4.599s] Level 1:colcon.colcon_core.shell:create_environment_hook('autonomous_node', 'pythonpath')
+[4.615s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/robot-ros/src/install/autonomous_node/share/autonomous_node/hook/pythonpath.ps1'
+[4.616s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/robot-ros/src/install/autonomous_node/share/autonomous_node/hook/pythonpath.dsv'
+[4.617s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/robot-ros/src/install/autonomous_node/share/autonomous_node/hook/pythonpath.sh'
+[4.618s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/autonomous_node/bin'
+[4.618s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(autonomous_node)
+[4.636s] INFO:colcon.colcon_core.shell:Creating package script '/root/robot-ros/src/install/autonomous_node/share/autonomous_node/package.ps1'
+[4.637s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/robot-ros/src/install/autonomous_node/share/autonomous_node/package.dsv'
+[4.638s] INFO:colcon.colcon_core.shell:Creating package script '/root/robot-ros/src/install/autonomous_node/share/autonomous_node/package.sh'
+[4.639s] INFO:colcon.colcon_core.shell:Creating package script '/root/robot-ros/src/install/autonomous_node/share/autonomous_node/package.bash'
+[4.640s] INFO:colcon.colcon_core.shell:Creating package script '/root/robot-ros/src/install/autonomous_node/share/autonomous_node/package.zsh'
+[4.641s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/robot-ros/src/install/autonomous_node/share/colcon-core/packages/autonomous_node)
+[4.644s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/root/robot-ros/src/influx_node' returned '0': PYTHONPATH=/root/robot-ros/src/build/influx_node/prefix_override:/root/robot-ros/src/install/influx_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/influx_node build --build-base /root/robot-ros/src/build/influx_node/build install --record /root/robot-ros/src/build/influx_node/install.log --single-version-externally-managed
+[4.686s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/influx_node' for CMake module files
+[4.687s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/influx_node' for CMake config files
+[4.688s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/influx_node/lib'
+[4.688s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/influx_node/bin'
+[4.688s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/influx_node/lib/pkgconfig/influx_node.pc'
+[4.688s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/influx_node/lib/python3.10/site-packages'
+[4.688s] Level 1:colcon.colcon_core.shell:create_environment_hook('influx_node', 'pythonpath')
+[4.704s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/robot-ros/src/install/influx_node/share/influx_node/hook/pythonpath.ps1'
+[4.705s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/root/robot-ros/src/install/influx_node/share/influx_node/hook/pythonpath.dsv'
+[4.706s] INFO:colcon.colcon_core.shell:Creating environment hook '/root/robot-ros/src/install/influx_node/share/influx_node/hook/pythonpath.sh'
+[4.707s] Level 1:colcon.colcon_core.environment:checking '/root/robot-ros/src/install/influx_node/bin'
+[4.707s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(influx_node)
+[4.723s] INFO:colcon.colcon_core.shell:Creating package script '/root/robot-ros/src/install/influx_node/share/influx_node/package.ps1'
+[4.724s] INFO:colcon.colcon_core.shell:Creating package descriptor '/root/robot-ros/src/install/influx_node/share/influx_node/package.dsv'
+[4.725s] INFO:colcon.colcon_core.shell:Creating package script '/root/robot-ros/src/install/influx_node/share/influx_node/package.sh'
+[4.726s] INFO:colcon.colcon_core.shell:Creating package script '/root/robot-ros/src/install/influx_node/share/influx_node/package.bash'
+[4.727s] INFO:colcon.colcon_core.shell:Creating package script '/root/robot-ros/src/install/influx_node/share/influx_node/package.zsh'
+[4.728s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/root/robot-ros/src/install/influx_node/share/colcon-core/packages/influx_node)
+[4.728s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[4.729s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[4.729s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[4.729s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[4.755s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.notify_send': Could not find 'notify-send'
+[4.755s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[4.755s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[4.755s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[4.756s] DEBUG:colcon.colcon_notification.desktop_notification.notify2:Failed to initialize notify2: org.freedesktop.DBus.Error.Spawn.ExecFailed: /usr/bin/dbus-launch terminated abnormally without any error message
+[4.756s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[4.775s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/robot-ros/src/install/local_setup.ps1'
+[4.776s] INFO:colcon.colcon_core.shell:Creating prefix util module '/root/robot-ros/src/install/_local_setup_util_ps1.py'
+[4.780s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/robot-ros/src/install/setup.ps1'
+[4.798s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/robot-ros/src/install/local_setup.sh'
+[4.803s] INFO:colcon.colcon_core.shell:Creating prefix util module '/root/robot-ros/src/install/_local_setup_util_sh.py'
+[4.804s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/robot-ros/src/install/setup.sh'
+[4.822s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/robot-ros/src/install/local_setup.bash'
+[4.823s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/robot-ros/src/install/setup.bash'
+[4.842s] INFO:colcon.colcon_core.shell:Creating prefix script '/root/robot-ros/src/install/local_setup.zsh'
+[4.843s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/root/robot-ros/src/install/setup.zsh'

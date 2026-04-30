@@ -1,0 +1,23 @@
+[2.224s] Invoking command in '/root/robot-ros/src/influx_node': PYTHONPATH=/root/robot-ros/src/build/influx_node/prefix_override:/root/robot-ros/src/install/influx_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/influx_node build --build-base /root/robot-ros/src/build/influx_node/build install --record /root/robot-ros/src/build/influx_node/install.log --single-version-externally-managed
+[2.607s] running egg_info
+[2.607s] writing ../build/influx_node/influx_node.egg-info/PKG-INFO
+[2.608s] writing dependency_links to ../build/influx_node/influx_node.egg-info/dependency_links.txt
+[2.611s] writing entry points to ../build/influx_node/influx_node.egg-info/entry_points.txt
+[2.612s] writing requirements to ../build/influx_node/influx_node.egg-info/requires.txt
+[2.616s] writing top-level names to ../build/influx_node/influx_node.egg-info/top_level.txt
+[2.623s] reading manifest file '../build/influx_node/influx_node.egg-info/SOURCES.txt'
+[2.624s] writing manifest file '../build/influx_node/influx_node.egg-info/SOURCES.txt'
+[2.624s] running build
+[2.625s] running build_py
+[2.625s] running install
+[2.630s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[2.631s]   warnings.warn(
+[2.631s] running install_lib
+[2.631s] running install_data
+[2.631s] running install_egg_info
+[2.633s] removing '/root/robot-ros/src/install/influx_node/lib/python3.10/site-packages/influx_node-0.0.0-py3.10.egg-info' (and everything under it)
+[2.634s] Copying ../build/influx_node/influx_node.egg-info to /root/robot-ros/src/install/influx_node/lib/python3.10/site-packages/influx_node-0.0.0-py3.10.egg-info
+[2.638s] running install_scripts
+[2.692s] Installing battery_node script to /root/robot-ros/src/install/influx_node/lib/influx_node
+[2.693s] writing list of installed files to '/root/robot-ros/src/build/influx_node/install.log'
+[2.865s] Invoked command in '/root/robot-ros/src/influx_node' returned '0': PYTHONPATH=/root/robot-ros/src/build/influx_node/prefix_override:/root/robot-ros/src/install/influx_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../build/influx_node build --build-base /root/robot-ros/src/build/influx_node/build install --record /root/robot-ros/src/build/influx_node/install.log --single-version-externally-managed

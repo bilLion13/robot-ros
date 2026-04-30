@@ -1,0 +1,39 @@
+[2.470s] Invoking command in '/root/robot-ros/src/autonomous_node': PYTHONPATH=/root/robot-ros/build/autonomous_node/prefix_override:/root/robot-ros/install/autonomous_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/autonomous_node build --build-base /root/robot-ros/build/autonomous_node/build install --record /root/robot-ros/build/autonomous_node/install.log --single-version-externally-managed
+[2.829s] running egg_info
+[2.831s] creating ../../build/autonomous_node/autonomous_node.egg-info
+[2.831s] writing ../../build/autonomous_node/autonomous_node.egg-info/PKG-INFO
+[2.832s] writing dependency_links to ../../build/autonomous_node/autonomous_node.egg-info/dependency_links.txt
+[2.836s] writing entry points to ../../build/autonomous_node/autonomous_node.egg-info/entry_points.txt
+[2.836s] writing requirements to ../../build/autonomous_node/autonomous_node.egg-info/requires.txt
+[2.836s] writing top-level names to ../../build/autonomous_node/autonomous_node.egg-info/top_level.txt
+[2.836s] writing manifest file '../../build/autonomous_node/autonomous_node.egg-info/SOURCES.txt'
+[2.837s] reading manifest file '../../build/autonomous_node/autonomous_node.egg-info/SOURCES.txt'
+[2.838s] writing manifest file '../../build/autonomous_node/autonomous_node.egg-info/SOURCES.txt'
+[2.838s] running build
+[2.838s] running build_py
+[2.839s] creating /root/robot-ros/build/autonomous_node/build
+[2.839s] creating /root/robot-ros/build/autonomous_node/build/lib
+[2.839s] creating /root/robot-ros/build/autonomous_node/build/lib/autonomous_node
+[2.840s] copying autonomous_node/autonomous_node.py -> /root/robot-ros/build/autonomous_node/build/lib/autonomous_node
+[2.840s] copying autonomous_node/__init__.py -> /root/robot-ros/build/autonomous_node/build/lib/autonomous_node
+[2.840s] running install
+[2.841s] running install_lib
+[2.843s] creating /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node
+[2.843s] copying /root/robot-ros/build/autonomous_node/build/lib/autonomous_node/autonomous_node.py -> /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node
+[2.843s] copying /root/robot-ros/build/autonomous_node/build/lib/autonomous_node/__init__.py -> /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node
+[2.844s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[2.844s]   warnings.warn(
+[2.844s] byte-compiling /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node/autonomous_node.py to autonomous_node.cpython-310.pyc
+[2.845s] byte-compiling /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node/__init__.py to __init__.cpython-310.pyc
+[2.846s] running install_data
+[2.847s] creating /root/robot-ros/install/autonomous_node/share/ament_index
+[2.847s] creating /root/robot-ros/install/autonomous_node/share/ament_index/resource_index
+[2.848s] creating /root/robot-ros/install/autonomous_node/share/ament_index/resource_index/packages
+[2.848s] copying resource/autonomous_node -> /root/robot-ros/install/autonomous_node/share/ament_index/resource_index/packages
+[2.849s] copying package.xml -> /root/robot-ros/install/autonomous_node/share/autonomous_node
+[2.849s] running install_egg_info
+[2.852s] Copying ../../build/autonomous_node/autonomous_node.egg-info to /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node-0.0.0-py3.10.egg-info
+[2.856s] running install_scripts
+[2.901s] Installing autonomous_node script to /root/robot-ros/install/autonomous_node/lib/autonomous_node
+[2.902s] writing list of installed files to '/root/robot-ros/build/autonomous_node/install.log'
+[2.996s] Invoked command in '/root/robot-ros/src/autonomous_node' returned '0': PYTHONPATH=/root/robot-ros/build/autonomous_node/prefix_override:/root/robot-ros/install/autonomous_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/autonomous_node build --build-base /root/robot-ros/build/autonomous_node/build install --record /root/robot-ros/build/autonomous_node/install.log --single-version-externally-managed
