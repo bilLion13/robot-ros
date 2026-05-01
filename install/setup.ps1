@@ -26,7 +26,6 @@ _colcon_prefix_chain_powershell_source_script "/opt/ros/humble\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/root/gmapping_ws/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/root/imu_ws/install\local_setup.ps1"
 _colcon_prefix_chain_powershell_source_script "/root/yahboomcar_ws/install\local_setup.ps1"
-_colcon_prefix_chain_powershell_source_script "/root/robot-ros/src/install\local_setup.ps1"
 
 # source this prefix
 $env:COLCON_CURRENT_PREFIX=(Split-Path $PSCommandPath -Parent)

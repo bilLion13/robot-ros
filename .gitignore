@@ -1,0 +1,4 @@
+core.*
+build/
+install/
+log/

@@ -1,0 +1,47 @@
+[1.125s] Invoking command in '/root/robot-ros/src/autonomous_node': PYTHONPATH=/root/robot-ros/build/autonomous_node/prefix_override:/root/robot-ros/install/autonomous_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/autonomous_node build --build-base /root/robot-ros/build/autonomous_node/build install --record /root/robot-ros/build/autonomous_node/install.log --single-version-externally-managed
+[1.429s] running egg_info
+[1.429s] creating ../../build/autonomous_node/autonomous_node.egg-info
+[1.430s] writing ../../build/autonomous_node/autonomous_node.egg-info/PKG-INFO
+[1.430s] writing dependency_links to ../../build/autonomous_node/autonomous_node.egg-info/dependency_links.txt
+[1.431s] writing entry points to ../../build/autonomous_node/autonomous_node.egg-info/entry_points.txt
+[1.431s] writing requirements to ../../build/autonomous_node/autonomous_node.egg-info/requires.txt
+[1.431s] writing top-level names to ../../build/autonomous_node/autonomous_node.egg-info/top_level.txt
+[1.431s] writing manifest file '../../build/autonomous_node/autonomous_node.egg-info/SOURCES.txt'
+[1.434s] reading manifest file '../../build/autonomous_node/autonomous_node.egg-info/SOURCES.txt'
+[1.434s] writing manifest file '../../build/autonomous_node/autonomous_node.egg-info/SOURCES.txt'
+[1.435s] running build
+[1.435s] running build_py
+[1.435s] creating /root/robot-ros/build/autonomous_node/build
+[1.435s] creating /root/robot-ros/build/autonomous_node/build/lib
+[1.435s] creating /root/robot-ros/build/autonomous_node/build/lib/autonomous_node
+[1.435s] copying autonomous_node/autonomous_node.py -> /root/robot-ros/build/autonomous_node/build/lib/autonomous_node
+[1.460s] copying autonomous_node/keyboard_control.py -> /root/robot-ros/build/autonomous_node/build/lib/autonomous_node
+[1.461s] copying autonomous_node/__init__.py -> /root/robot-ros/build/autonomous_node/build/lib/autonomous_node
+[1.461s] copying autonomous_node/joy_control.py -> /root/robot-ros/build/autonomous_node/build/lib/autonomous_node
+[1.461s] running install
+[1.461s] /usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[1.461s]   warnings.warn(
+[1.461s] running install_lib
+[1.462s] creating /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node
+[1.463s] copying /root/robot-ros/build/autonomous_node/build/lib/autonomous_node/autonomous_node.py -> /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node
+[1.463s] copying /root/robot-ros/build/autonomous_node/build/lib/autonomous_node/keyboard_control.py -> /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node
+[1.463s] copying /root/robot-ros/build/autonomous_node/build/lib/autonomous_node/__init__.py -> /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node
+[1.463s] copying /root/robot-ros/build/autonomous_node/build/lib/autonomous_node/joy_control.py -> /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node
+[1.464s] byte-compiling /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node/autonomous_node.py to autonomous_node.cpython-310.pyc
+[1.465s] byte-compiling /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node/keyboard_control.py to keyboard_control.cpython-310.pyc
+[1.466s] byte-compiling /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node/__init__.py to __init__.cpython-310.pyc
+[1.466s] byte-compiling /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node/joy_control.py to joy_control.cpython-310.pyc
+[1.466s] running install_data
+[1.467s] creating /root/robot-ros/install/autonomous_node/share/ament_index
+[1.467s] creating /root/robot-ros/install/autonomous_node/share/ament_index/resource_index
+[1.467s] creating /root/robot-ros/install/autonomous_node/share/ament_index/resource_index/packages
+[1.467s] copying resource/autonomous_node -> /root/robot-ros/install/autonomous_node/share/ament_index/resource_index/packages
+[1.468s] copying package.xml -> /root/robot-ros/install/autonomous_node/share/autonomous_node
+[1.468s] running install_egg_info
+[1.470s] Copying ../../build/autonomous_node/autonomous_node.egg-info to /root/robot-ros/install/autonomous_node/lib/python3.10/site-packages/autonomous_node-0.0.0-py3.10.egg-info
+[1.471s] running install_scripts
+[1.498s] Installing autonomous_node script to /root/robot-ros/install/autonomous_node/lib/autonomous_node
+[1.498s] Installing joy_control script to /root/robot-ros/install/autonomous_node/lib/autonomous_node
+[1.498s] Installing keyboard_control script to /root/robot-ros/install/autonomous_node/lib/autonomous_node
+[1.499s] writing list of installed files to '/root/robot-ros/build/autonomous_node/install.log'
+[1.554s] Invoked command in '/root/robot-ros/src/autonomous_node' returned '0': PYTHONPATH=/root/robot-ros/build/autonomous_node/prefix_override:/root/robot-ros/install/autonomous_node/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/autonomous_node build --build-base /root/robot-ros/build/autonomous_node/build install --record /root/robot-ros/build/autonomous_node/install.log --single-version-externally-managed
