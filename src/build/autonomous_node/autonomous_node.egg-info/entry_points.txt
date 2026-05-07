@@ -1,3 +1,5 @@
 [console_scripts]
 autonomous_node = autonomous_node.autonomous_node:main
+joy_control = autonomous_node.joy_control:main
+keyboard_control = autonomous_node.keyboard_control:main
 

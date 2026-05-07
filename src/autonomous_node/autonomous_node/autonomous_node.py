@@ -8,9 +8,16 @@ from geometry_msgs.msg import Twist
 class AutonomousNode(Node):
     def __init__(self):
         super().__init__('autonomous_node')
+
         self.pub = self.create_publisher(Twist, '/cmd_vel', 10)
         self.sub = self.create_subscription(LaserScan, '/scan', self.callback, 10)
-        self.last_turn_time = 0
+
+        self.mode = "AVANCE"
+        self.turn_until = 0.0
+        self.last_log_time = 0.0
+
+        self.get_logger().info("Node autonome demarre")
+        self.get_logger().info("Modes : AVANCE / STOP / TOURNE")
 
     def send_cmd(self, linear, angular):
         twist = Twist()
@@ -19,28 +26,57 @@ class AutonomousNode(Node):
         self.pub.publish(twist)
 
     def callback(self, msg):
+        now = time.time()
         ranges = list(msg.ranges)
-        front_ranges = ranges[0:15] + ranges[-15:]
-        front_ranges = [r for r in front_ranges if 0.1 < r < 3.0]
 
-        if not front_ranges:
+        front = ranges[0:20] + ranges[-20:]
+        left = ranges[60:120]
+        right = ranges[-120:-60]
+
+        front = [r for r in front if 0.10 < r < 3.50]
+        left = [r for r in left if 0.10 < r < 3.50]
+        right = [r for r in right if 0.10 < r < 3.50]
+
+        front_min = min(front) if front else 9.99
+        left_min = min(left) if left else 9.99
+        right_min = min(right) if right else 9.99
+
+        if now - self.last_log_time > 0.5:
+            self.get_logger().info(
+                f"MODE={self.mode} | FRONT={front_min:.2f} | LEFT={left_min:.2f} | RIGHT={right_min:.2f}"
+            )
+            self.last_log_time = now
+
+        if self.mode == "TOURNE":
+            if now < self.turn_until:
+                if left_min > right_min:
+                    self.send_cmd(0.0, 0.45)
+                else:
+                    self.send_cmd(0.0, -0.45)
+                return
+            else:
+                self.mode = "AVANCE"
+
+        if front_min < 0.30:
+            self.mode = "TOURNE"
             self.send_cmd(0.0, 0.0)
+            self.turn_until = now + 1.2
+            self.get_logger().warn("Obstacle proche -> STOP puis TOURNE")
             return
 
-        front_min = min(front_ranges)
-        now = time.time()
+        if front_min < 0.55:
+            self.mode = "AVANCE_LENT"
+            self.send_cmd(0.07, 0.0)
+            return
 
-        self.get_logger().info(f"FRONT DIST = {front_min:.2f}")
+        self.mode = "AVANCE"
+        self.send_cmd(0.15, 0.0)
 
-        if front_min < 0.35:
+    def stop_robot(self):
+        self.get_logger().warn("Arret du robot")
+        for _ in range(10):
             self.send_cmd(0.0, 0.0)
-            time.sleep(0.2)
-            self.send_cmd(0.0, 0.35)
-            self.last_turn_time = now
-            self.get_logger().warn("Obstacle -> tourne un peu")
-        else:
-            self.send_cmd(0.12, 0.0)
-            self.get_logger().info("Libre -> avance")
+            time.sleep(0.05)
 
 
 def main(args=None):
@@ -52,8 +88,7 @@ def main(args=None):
     except KeyboardInterrupt:
         pass
     finally:
-        node.send_cmd(0.0, 0.0)
-        time.sleep(0.5)
+        node.stop_robot()
         node.destroy_node()
         rclpy.shutdown()
 

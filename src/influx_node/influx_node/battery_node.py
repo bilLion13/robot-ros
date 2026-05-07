@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import UInt16
+from std_msgs.msg import Int32
 from influxdb_client import InfluxDBClient, Point
 from influxdb_client.client.write_api import SYNCHRONOUS
 
@@ -22,6 +23,12 @@ class BatteryNode(Node):
             self.callback,
             10
         )
+        self.hole_sub = self.create_subscription(
+            Int32,
+            '/hole_detected',
+            self.hole_callback,
+            10
+        )
 
     def callback(self, msg):
         value = msg.data
@@ -37,6 +44,17 @@ class BatteryNode(Node):
         except Exception as e:
             self.get_logger().error(f"Erreur Influx: {e}")
 
+    def hole_callback(self, msg):
+        value = msg.data
+
+        try:
+            point = Point("robot_hole").field("detected", value)
+            self.write_api.write(bucket="robot-ros-pi", record=point)
+
+            self.get_logger().info(f"Trou envoyé: {value}")
+
+        except Exception as e:
+            self.get_logger().error(f"Erreur Influx trou: {e}")
 
 def main():
     rclpy.init()

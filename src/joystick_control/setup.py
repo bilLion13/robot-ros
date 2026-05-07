@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'autonomous_node'
+package_name = 'joystick_control'
 
 setup(
     name=package_name,
@@ -15,14 +15,12 @@ setup(
     zip_safe=True,
     maintainer='root',
     maintainer_email='root@todo.todo',
-    description='Autonomous and joystick control node',
-    license='TODO',
+    description='TODO: Package description',
+    license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'autonomous_node = autonomous_node.autonomous_node:main',
-            'joy_control = autonomous_node.joy_control:main',
-            'keyboard_control = autonomous_node.keyboard_control:main',
+            'joystick_control = joystick_control.joystick_control:main',
         ],
     },
 )
