@@ -10,7 +10,6 @@ setup.py
 ../build/autonomous_node/autonomous_node.egg-info/zip-safe
 autonomous_node/__init__.py
 autonomous_node/autonomous_node.py
-autonomous_node/joy_control.py
 autonomous_node/keyboard_control.py
 resource/autonomous_node
 test/test_copyright.py

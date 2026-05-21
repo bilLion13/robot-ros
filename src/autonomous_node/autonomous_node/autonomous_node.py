@@ -1,135 +1,667 @@
 import time
-
 import math
+import json
 
 import rclpy
-
 from rclpy.node import Node
 
 from sensor_msgs.msg import LaserScan
-
 from geometry_msgs.msg import Twist
+from std_msgs.msg import String, Bool, Int32
 
-from std_msgs.msg import String
 
-import json
- 
- 
-# ─────────────────────────────────────────────
+# ============================================================
+# PARAMÈTRES DE VITESSE
+# ============================================================
 
-#  Paramètres de comportement
+# Vitesse normale
+LINEAR_FAST = 0.06
 
-# ─────────────────────────────────────────────
+# Vitesse lente proche obstacle
+LINEAR_SLOW = 0.03
 
-LINEAR_FAST   = 0.18   # m/s  – avance normal
+# Recul obstacle lidar
+LINEAR_BACK = -0.05
 
-LINEAR_SLOW   = 0.07   # m/s  – avance prudente
+# Rotation normale lidar
+ANGULAR_TURN = 0.45
 
-ANGULAR_TURN  = 0.50   # rad/s – rotation sur place
 
-TURN_DURATION = 1.4    # s    – durée d'un virage de base
- 
-DIST_STOP     = 0.30   # m    – obstacle très proche → stop + tourne
+# ============================================================
+# DISTANCES DE SÉCURITÉ
+# ============================================================
 
-DIST_SLOW     = 0.55   # m    – obstacle en approche → ralentit
+DIST_EMERGENCY = 0.18
+DIST_STOP = 0.42
+DIST_SLOW = 0.75
+DIST_CLEAR = 0.65
+DIST_SIDE = 0.25
 
-DIST_SIDE     = 0.25   # m    – obstacle latéral    → déviation douce
- 
-LOG_INTERVAL  = 0.4    # s    – fréquence des logs console
- 
- 
+
+# ============================================================
+# TEMPS
+# ============================================================
+
+BACK_DURATION = 0.7
+MAX_TURN_DURATION = 2.5
+LOG_INTERVAL = 0.4
+
+
+# ============================================================
+# CAMÉRA
+# ============================================================
+
+CAMERA_VERTICAL_ANGLE = -45
+
+
 class AutonomousNode(Node):
 
     def __init__(self):
-
         super().__init__('autonomous_node')
- 
-        # ── Publishers ──────────────────────────────────────────────────────
 
-        self.pub_cmd  = self.create_publisher(Twist,  '/cmd_vel',         10)
+        # ====================================================
+        # PUBLISHERS
+        # ====================================================
 
-        self.pub_diag = self.create_publisher(String, '/robot/diagnostics', 10)
- 
-        # ── Subscriber ──────────────────────────────────────────────────────
-
-        self.sub = self.create_subscription(
-
-            LaserScan, '/scan', self.lidar_callback, 10
-
+        self.pub_cmd = self.create_publisher(
+            Twist,
+            '/cmd_vel',
+            10
         )
- 
-        # ── État interne ────────────────────────────────────────────────────
 
-        self.mode         = "INIT"
+        self.pub_diag = self.create_publisher(
+            String,
+            '/robot/diagnostics',
+            10
+        )
 
-        self.turn_until   = 0.0
+        self.servo2_pub = self.create_publisher(
+            Int32,
+            '/servo_s2',
+            10
+        )
 
-        self.turn_dir     = 1          # +1 = gauche, -1 = droite
+        # ====================================================
+        # SUBSCRIBERS
+        # ====================================================
 
-        self.last_log     = 0.0
+        self.sub_scan = self.create_subscription(
+            LaserScan,
+            '/scan',
+            self.lidar_callback,
+            10
+        )
 
-        self.scan_count   = 0
- 
+        self.sub_joy = self.create_subscription(
+            Bool,
+            '/JoyState',
+            self.joystate_callback,
+            10
+        )
+
+        self.sub_danger = self.create_subscription(
+            Int32,
+            '/danger_detected',
+            self.danger_callback,
+            10
+        )
+
+        # ====================================================
+        # VARIABLES
+        # ====================================================
+
+        self.active = True
+
+        self.mode = "INIT"
+
         self.front_min = 9.99
-
-        self.left_min  = 9.99
-
+        self.left_min = 9.99
         self.right_min = 9.99
- 
-        self.get_logger().info("=" * 50)
 
-        self.get_logger().info("  Node autonome démarré")
+        self.turn_dir = 1
 
-        self.get_logger().info("  Modes : INIT / AVANCE / AVANCE_LENT")
+        self.state_until = 0.0
+        self.danger_until = 0.0
 
-        self.get_logger().info("          EVITE_GAUCHE / EVITE_DROITE")
+        # Ignore temporairement les nouvelles détections
+        self.ignore_danger_until = 0.0
 
-        self.get_logger().info("          STOP / TOURNE_GAUCHE / TOURNE_DROITE")
+        self.danger_detected = False
 
-        self.get_logger().info("=" * 50)
- 
-    # ─────────────────────────────────────────────────────────────────────
+        self.last_log = 0.0
+        self.scan_count = 0
 
-    #  Envoi de commande moteur
+        # ====================================================
+        # TIMER CAMÉRA
+        # ====================================================
 
-    # ─────────────────────────────────────────────────────────────────────
+        self.camera_timer = self.create_timer(
+            1.0,
+            self.publish_camera_position
+        )
 
-    def send_cmd(self, linear: float, angular: float):
+        self.publish_camera_position()
+
+        self.get_logger().info("=" * 60)
+        self.get_logger().info("AUTONOMOUS NODE READY")
+        self.get_logger().info("=" * 60)
+
+    # ========================================================
+    # POSITION CAMÉRA
+    # ========================================================
+
+    def publish_camera_position(self):
+
+        msg = Int32()
+        msg.data = int(CAMERA_VERTICAL_ANGLE)
+
+        self.servo2_pub.publish(msg)
+
+    # ========================================================
+    # MODE MANUEL / AUTO
+    # ========================================================
+
+    def joystate_callback(self, msg: Bool):
+
+        # JoyState=True  → manuel
+        # JoyState=False → auto
+
+        self.active = not msg.data
+
+        if not self.active:
+
+            self.mode = "MANUEL"
+
+            self.send_cmd(0.0, 0.0)
+
+            self.get_logger().info(
+                "MODE MANUEL"
+            )
+
+        else:
+
+            self.mode = "INIT"
+
+            self.publish_camera_position()
+
+            self.get_logger().info(
+                "MODE AUTO"
+            )
+
+    # ========================================================
+    # DÉTECTION DANGER CAMÉRA
+    # ========================================================
+
+    def danger_callback(self, msg: Int32):
+
+        now = time.time()
+
+        # Ignore temporairement les nouvelles détections
+        if now < self.ignore_danger_until:
+            return
+
+        detected = (msg.data == 1)
+
+        # ====================================================
+        # DANGER DÉTECTÉ
+        # ====================================================
+
+        if detected and self.active:
+
+            # Évite de relancer sans arrêt
+            if self.mode in [
+                "RECULE_DANGER",
+                "TOURNE_DANGER"
+            ]:
+                return
+
+            self.danger_detected = True
+
+            self.get_logger().warn(
+                "DANGER DETECTE"
+            )
+
+            # Stop rapide
+            self.send_cmd(0.0, 0.0)
+
+            # Petit recul uniquement
+            self.mode = "RECULE_DANGER"
+
+            # Recul très court
+            self.danger_until = now + 0.25
+
+            # Choisir direction
+            self.choose_turn_direction()
+
+        else:
+
+            self.danger_detected = False
+
+    # ========================================================
+    # ENVOI COMMANDE MOTEUR
+    # ========================================================
+
+    def send_cmd(self, linear, angular):
 
         twist = Twist()
 
-        twist.linear.x  = float(linear)
-
+        twist.linear.x = float(linear)
         twist.angular.z = float(angular)
 
         self.pub_cmd.publish(twist)
- 
-    # ─────────────────────────────────────────────────────────────────────
 
-    #  Publication des diagnostics (JSON sur /robot/diagnostics)
+    # ========================================================
+    # FILTRAGE LIDAR
+    # ========================================================
 
-    # ─────────────────────────────────────────────────────────────────────
+    @staticmethod
+    def safe_min(values, lo=0.08, hi=3.5):
 
-    def publish_diag(self, linear: float, angular: float):
+        valid = []
+
+        for value in values:
+
+            if math.isnan(value):
+                continue
+
+            if math.isinf(value):
+                continue
+
+            if lo < value < hi:
+                valid.append(value)
+
+        if len(valid) == 0:
+            return 9.99
+
+        return min(valid)
+
+    # ========================================================
+    # EXTRACTION SECTEURS
+    # ========================================================
+
+    def get_sector_values(
+        self,
+        msg,
+        angle_min_deg,
+        angle_max_deg
+    ):
+
+        values = []
+
+        for i, distance in enumerate(msg.ranges):
+
+            angle_rad = (
+                msg.angle_min +
+                i * msg.angle_increment
+            )
+
+            angle_deg = math.degrees(angle_rad)
+
+            while angle_deg > 180:
+                angle_deg -= 360
+
+            while angle_deg < -180:
+                angle_deg += 360
+
+            if angle_min_deg <= angle_deg <= angle_max_deg:
+                values.append(distance)
+
+        return values
+
+    # ========================================================
+    # DÉCOUPAGE LIDAR
+    # ========================================================
+
+    def parse_scan(self, msg):
+
+        front_values = self.get_sector_values(
+            msg,
+            -18,
+            18
+        )
+
+        left_values = self.get_sector_values(
+            msg,
+            35,
+            95
+        )
+
+        right_values = self.get_sector_values(
+            msg,
+            -95,
+            -35
+        )
+
+        self.front_min = self.safe_min(front_values)
+        self.left_min = self.safe_min(left_values)
+        self.right_min = self.safe_min(right_values)
+
+    # ========================================================
+    # CALLBACK PRINCIPAL
+    # ========================================================
+
+    def lidar_callback(self, msg: LaserScan):
+
+        if not self.active:
+            return
+
+        now = time.time()
+
+        self.scan_count += 1
+
+        self.parse_scan(msg)
+
+        # ====================================================
+        # RECUL DANGER
+        # ====================================================
+
+        if self.mode == "RECULE_DANGER":
+
+            if now < self.danger_until:
+
+                # Petit recul doux
+                self.send_cmd(
+                    -0.025,
+                    0.08 * self.turn_dir
+                )
+
+                self.publish_diag(
+                    -0.025,
+                    0.08 * self.turn_dir
+                )
+
+                self.log_status(now)
+
+                return
+
+            # Passe au virage
+            self.mode = "TOURNE_DANGER"
+
+            self.state_until = now + 0.9
+
+            return
+
+        # ====================================================
+        # VIRAGE DANGER
+        # ====================================================
+
+        if self.mode == "TOURNE_DANGER":
+
+            if now > self.state_until:
+
+                self.mode = "AVANCE"
+
+                self.danger_detected = False
+
+                # Ignore danger pendant 2 sec
+                self.ignore_danger_until = (
+                    time.time() + 2.0
+                )
+
+                self.send_cmd(0.0, 0.0)
+
+                self.publish_diag(0.0, 0.0)
+
+                self.log_status(now)
+
+                return
+
+            # Courbe réaliste
+            self.send_cmd(
+                0.035,
+                0.9 * self.turn_dir
+            )
+
+            self.publish_diag(
+                0.035,
+                0.9 * self.turn_dir
+            )
+
+            self.log_status(now)
+
+            return
+
+        # ====================================================
+        # RECUL LIDAR
+        # ====================================================
+
+        if self.mode == "RECULE":
+
+            if now < self.state_until:
+
+                self.send_cmd(
+                    LINEAR_BACK,
+                    0.0
+                )
+
+                self.publish_diag(
+                    LINEAR_BACK,
+                    0.0
+                )
+
+                self.log_status(now)
+
+                return
+
+            self.choose_turn_direction()
+
+            self.mode = "TOURNE"
+
+            self.state_until = (
+                now + MAX_TURN_DURATION
+            )
+
+            return
+
+        # ====================================================
+        # VIRAGE LIDAR
+        # ====================================================
+
+        if self.mode == "TOURNE":
+
+            if self.front_min > DIST_CLEAR:
+
+                self.mode = "AVANCE"
+
+                self.send_cmd(0.0, 0.0)
+
+                self.publish_diag(0.0, 0.0)
+
+                self.log_status(now)
+
+                return
+
+            if now > self.state_until:
+
+                self.mode = "AVANCE"
+
+                self.send_cmd(0.0, 0.0)
+
+                self.publish_diag(0.0, 0.0)
+
+                self.log_status(now)
+
+                return
+
+            self.send_cmd(
+                0.0,
+                ANGULAR_TURN * self.turn_dir
+            )
+
+            self.publish_diag(
+                0.0,
+                ANGULAR_TURN * self.turn_dir
+            )
+
+            self.log_status(now)
+
+            return
+
+        # ====================================================
+        # OBSTACLE TRÈS PROCHE
+        # ====================================================
+
+        if self.front_min < DIST_EMERGENCY:
+
+            self.mode = "RECULE"
+
+            self.state_until = (
+                now + BACK_DURATION
+            )
+
+            self.send_cmd(0.0, 0.0)
+
+            self.publish_diag(0.0, 0.0)
+
+            self.log_status(now)
+
+            return
+
+        # ====================================================
+        # OBSTACLE DEVANT
+        # ====================================================
+
+        if self.front_min < DIST_STOP:
+
+            self.choose_turn_direction()
+
+            self.mode = "TOURNE"
+
+            self.state_until = (
+                now + MAX_TURN_DURATION
+            )
+
+            self.send_cmd(0.0, 0.0)
+
+            self.publish_diag(0.0, 0.0)
+
+            self.log_status(now)
+
+            return
+
+        # ====================================================
+        # RALENTISSEMENT
+        # ====================================================
+
+        if self.front_min < DIST_SLOW:
+
+            self.mode = "AVANCE_LENT"
+
+            linear = LINEAR_SLOW
+            angular = 0.0
+
+            if self.left_min > self.right_min + 0.15:
+                angular = 0.18
+
+            elif self.right_min > self.left_min + 0.15:
+                angular = -0.18
+
+            self.send_cmd(linear, angular)
+
+            self.publish_diag(
+                linear,
+                angular
+            )
+
+            self.log_status(now)
+
+            return
+
+        # ====================================================
+        # CORRECTION CÔTÉS
+        # ====================================================
+
+        if self.left_min < DIST_SIDE:
+
+            self.mode = "CORRIGE_DROITE"
+
+            self.send_cmd(
+                LINEAR_SLOW,
+                -0.20
+            )
+
+            self.publish_diag(
+                LINEAR_SLOW,
+                -0.20
+            )
+
+            self.log_status(now)
+
+            return
+
+        if self.right_min < DIST_SIDE:
+
+            self.mode = "CORRIGE_GAUCHE"
+
+            self.send_cmd(
+                LINEAR_SLOW,
+                0.20
+            )
+
+            self.publish_diag(
+                LINEAR_SLOW,
+                0.20
+            )
+
+            self.log_status(now)
+
+            return
+
+        # ====================================================
+        # ROUTE LIBRE
+        # ====================================================
+
+        self.mode = "AVANCE"
+
+        self.send_cmd(
+            LINEAR_FAST,
+            0.0
+        )
+
+        self.publish_diag(
+            LINEAR_FAST,
+            0.0
+        )
+
+        self.log_status(now)
+
+    # ========================================================
+    # CHOIX DIRECTION
+    # ========================================================
+
+    def choose_turn_direction(self):
+
+        if self.left_min >= self.right_min:
+            self.turn_dir = 1
+
+        else:
+            self.turn_dir = -1
+
+    # ========================================================
+    # DIAGNOSTIC
+    # ========================================================
+
+    def publish_diag(self, linear, angular):
 
         payload = {
 
-            "ts":      round(time.time(), 3),
+            "ts": round(time.time(), 3),
 
-            "mode":    self.mode,
+            "mode": self.mode,
 
-            "front":   round(self.front_min, 3),
+            "front": round(self.front_min, 3),
+            "left": round(self.left_min, 3),
+            "right": round(self.right_min, 3),
 
-            "left":    round(self.left_min,  3),
-
-            "right":   round(self.right_min, 3),
-
-            "linear":  round(linear,  3),
-
+            "linear": round(linear, 3),
             "angular": round(angular, 3),
 
-            "scans":   self.scan_count,
+            "danger_detected": self.danger_detected,
 
+            "camera_servo_s2":
+                CAMERA_VERTICAL_ANGLE,
+
+            "scans": self.scan_count
         }
 
         msg = String()
@@ -137,258 +669,43 @@ class AutonomousNode(Node):
         msg.data = json.dumps(payload)
 
         self.pub_diag.publish(msg)
- 
-    # ─────────────────────────────────────────────────────────────────────
 
-    #  Extraction des zones depuis le LaserScan
+    # ========================================================
+    # LOG
+    # ========================================================
 
-    # ─────────────────────────────────────────────────────────────────────
-
-    @staticmethod
-
-    def _safe_min(values, lo=0.10, hi=3.50):
-
-        filtered = [r for r in values if lo < r < hi and not math.isnan(r)]
-
-        return min(filtered) if filtered else 9.99
- 
-    def parse_scan(self, msg: LaserScan):
-
-        ranges = list(msg.ranges)
-
-        n = len(ranges)
- 
-        # Angles relatifs au repère du robot (index 0 = avant)
-
-        front_idx = list(range(0, 20)) + list(range(n - 20, n))
-
-        left_idx  = list(range(60, 120))
-
-        right_idx = list(range(n - 120, n - 60))
- 
-        self.front_min = self._safe_min([ranges[i] for i in front_idx if i < n])
-
-        self.left_min  = self._safe_min([ranges[i] for i in left_idx  if i < n])
-
-        self.right_min = self._safe_min([ranges[i] for i in right_idx if i < n])
- 
-    # ─────────────────────────────────────────────────────────────────────
-
-    #  Callback principal LIDAR
-
-    # ─────────────────────────────────────────────────────────────────────
-
-    def lidar_callback(self, msg: LaserScan):
-
-        now = time.time()
-
-        self.scan_count += 1
- 
-        self.parse_scan(msg)
- 
-        linear  = 0.0
-
-        angular = 0.0
- 
-        # ── Machine à états ──────────────────────────────────────────────
- 
-        # 1) En train de tourner – attend la fin du virage
-
-        if self.mode in ("TOURNE_GAUCHE", "TOURNE_DROITE"):
-
-            if now < self.turn_until:
-
-                angular = ANGULAR_TURN * self.turn_dir
-
-                self.send_cmd(0.0, angular)
-
-                self.publish_diag(0.0, angular)
-
-                self._maybe_log(now)
-
-                return
-
-            else:
-
-                self.mode = "AVANCE"
- 
-        # 2) Obstacle immédiat → stop + virage
-
-        if self.front_min < DIST_STOP:
-
-            self.send_cmd(0.0, 0.0)
-
-            self._choose_turn(now)
-
-            self.get_logger().warn(
-
-                f"⚠  Obstacle à {self.front_min:.2f} m → {self.mode}"
-
-            )
-
-            self.publish_diag(0.0, 0.0)
-
-            self._maybe_log(now)
-
-            return
- 
-        # 3) Obstacle en approche → ralentit
-
-        if self.front_min < DIST_SLOW:
-
-            self.mode = "AVANCE_LENT"
-
-            linear    = LINEAR_SLOW
- 
-            # Légère correction de cap si un côté est plus dégagé
-
-            if self.left_min > self.right_min + 0.10:
-
-                angular = 0.15   # vire doucement à gauche
-
-            elif self.right_min > self.left_min + 0.10:
-
-                angular = -0.15  # vire doucement à droite
- 
-            self.send_cmd(linear, angular)
-
-            self.publish_diag(linear, angular)
-
-            self._maybe_log(now)
-
-            return
- 
-        # 4) Obstacle latéral → déviation douce
-
-        if self.left_min < DIST_SIDE:
-
-            self.mode   = "EVITE_DROITE"
-
-            linear      = LINEAR_SLOW
-
-            angular     = -0.30
-
-            self.send_cmd(linear, angular)
-
-            self.publish_diag(linear, angular)
-
-            self._maybe_log(now)
-
-            return
- 
-        if self.right_min < DIST_SIDE:
-
-            self.mode   = "EVITE_GAUCHE"
-
-            linear      = LINEAR_SLOW
-
-            angular     = 0.30
-
-            self.send_cmd(linear, angular)
-
-            self.publish_diag(linear, angular)
-
-            self._maybe_log(now)
-
-            return
- 
-        # 5) Voie libre → avance à vitesse normale
-
-        self.mode = "AVANCE"
-
-        linear    = LINEAR_FAST
-
-        self.send_cmd(linear, 0.0)
-
-        self.publish_diag(linear, 0.0)
-
-        self._maybe_log(now)
- 
-    # ─────────────────────────────────────────────────────────────────────
-
-    #  Choisit la direction de virage la plus dégagée
-
-    # ─────────────────────────────────────────────────────────────────────
-
-    def _choose_turn(self, now: float):
-
-        if self.left_min >= self.right_min:
-
-            self.turn_dir = 1          # gauche plus dégagée
-
-            self.mode     = "TOURNE_GAUCHE"
-
-        else:
-
-            self.turn_dir = -1         # droite plus dégagée
-
-            self.mode     = "TOURNE_DROITE"
- 
-        # Virage plus long si obstacle vraiment proche
-
-        extra = 0.4 if self.front_min < 0.20 else 0.0
-
-        self.turn_until = now + TURN_DURATION + extra
- 
-    # ─────────────────────────────────────────────────────────────────────
-
-    #  Log console (throttled)
-
-    # ─────────────────────────────────────────────────────────────────────
-
-    def _maybe_log(self, now: float):
+    def log_status(self, now):
 
         if now - self.last_log < LOG_INTERVAL:
-
             return
 
         self.last_log = now
- 
-        icons = {
 
-            "AVANCE":       "▶",
-
-            "AVANCE_LENT":  "▷",
-
-            "TOURNE_GAUCHE":"↰",
-
-            "TOURNE_DROITE":"↱",
-
-            "EVITE_GAUCHE": "↖",
-
-            "EVITE_DROITE": "↗",
-
-            "STOP":         "■",
-
-            "INIT":         "◉",
-
-        }
-
-        icon = icons.get(self.mode, "?")
- 
         self.get_logger().info(
 
-            f"{icon}  MODE={self.mode:<14} | "
+            f"MODE={self.mode:<18} | "
 
-            f"FRONT={self.front_min:5.2f}m  "
+            f"FRONT={self.front_min:.2f} "
 
-            f"LEFT={self.left_min:5.2f}m  "
+            f"LEFT={self.left_min:.2f} "
 
-            f"RIGHT={self.right_min:5.2f}m  "
+            f"RIGHT={self.right_min:.2f} "
 
-            f"[scan #{self.scan_count}]"
+            f"DIR={self.turn_dir:+d} "
+
+            f"DANGER={self.danger_detected}"
 
         )
- 
-    # ─────────────────────────────────────────────────────────────────────
 
-    #  Arrêt propre
-
-    # ─────────────────────────────────────────────────────────────────────
+    # ========================================================
+    # STOP
+    # ========================================================
 
     def stop_robot(self):
 
-        self.get_logger().warn("■  Arrêt du robot – envoi commande zéro")
+        self.get_logger().warn(
+            "STOP ROBOT"
+        )
 
         for _ in range(15):
 
@@ -396,27 +713,22 @@ class AutonomousNode(Node):
 
             time.sleep(0.05)
 
-        self.get_logger().info("Robot arrêté.")
- 
- 
-# ─────────────────────────────────────────────────────────────────────────
 
-#  Entrée principale
-
-# ─────────────────────────────────────────────────────────────────────────
+# ============================================================
+# MAIN
+# ============================================================
 
 def main(args=None):
 
     rclpy.init(args=args)
 
     node = AutonomousNode()
- 
+
     try:
 
         rclpy.spin(node)
 
     except KeyboardInterrupt:
-
         pass
 
     finally:
@@ -426,9 +738,7 @@ def main(args=None):
         node.destroy_node()
 
         rclpy.shutdown()
- 
- 
-if __name__ == '__main__':
 
+
+if __name__ == '__main__':
     main()
- 

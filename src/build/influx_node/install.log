@@ -11,4 +11,4 @@
 /root/robot-ros/src/install/influx_node/lib/python3.10/site-packages/influx_node-0.0.0-py3.10.egg-info/requires.txt
 /root/robot-ros/src/install/influx_node/lib/python3.10/site-packages/influx_node-0.0.0-py3.10.egg-info/PKG-INFO
 /root/robot-ros/src/install/influx_node/lib/python3.10/site-packages/influx_node-0.0.0-py3.10.egg-info/dependency_links.txt
-/root/robot-ros/src/install/influx_node/lib/influx_node/battery_node
+/root/robot-ros/src/install/influx_node/lib/influx_node/telemetry_node

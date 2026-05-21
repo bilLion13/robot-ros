@@ -10,13 +10,8 @@ setup.py
 ../../build/autonomous_node/autonomous_node.egg-info/zip-safe
 autonomous_node/__init__.py
 autonomous_node/autonomous_node.py
-autonomous_node/joy_control.py
 autonomous_node/keyboard_control.py
-autonomous_node.egg-info/PKG-INFO
-autonomous_node.egg-info/SOURCES.txt
-autonomous_node.egg-info/dependency_links.txt
-autonomous_node.egg-info/entry_points.txt
-autonomous_node.egg-info/requires.txt
-autonomous_node.egg-info/top_level.txt
-autonomous_node.egg-info/zip-safe
 resource/autonomous_node
+test/test_copyright.py
+test/test_flake8.py
+test/test_pep257.py

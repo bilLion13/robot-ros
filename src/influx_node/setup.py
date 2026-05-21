@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-           'battery_node = influx_node.battery_node:main',
+           'telemetry_node = influx_node.battery_node:main',
            ],
     },
  )
